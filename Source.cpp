@@ -30,6 +30,11 @@ int main(void) {
 		StudentList.emplace_back(student);
 	}
 
+	#ifdef _DEBUG
+	cout << "NAMES LOADED:\n";
+		for (int i = 0; i < StudentList.size(); i++) StudentList[i].printName();
+	#endif
+
 	nameFile.close();
 	emailFile.close();
 

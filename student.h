@@ -26,8 +26,6 @@ struct STUDENT_DATA {
 		for (int i = firstnameLength+1; i < name.length(); i++) {
 			if (name[i] != ' ') lastname += name[i];
 		}
-
-		printName();
 	}
 
 	void printName() {
