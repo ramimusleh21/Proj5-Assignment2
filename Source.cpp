@@ -6,8 +6,6 @@
 #include "student.h"
 #include "globals.h"
 
-#define PRE_RELEASE
-
 using namespace std;
 
 int main(void) {
@@ -21,7 +19,7 @@ int main(void) {
 	}
 
 	
-#ifdef PRE_RELEASE
+#ifdef _PRE_RELEASE
 
 	ifstream emailFile(EMAIL_FILEPATH);
 	if (!emailFile.is_open()) {
@@ -54,7 +52,7 @@ int main(void) {
 	#endif
 
 	nameFile.close();
-#ifdef PRE_RELEASE
+#ifdef _PRE_RELEASE
 	emailFile.close();
 #endif
 
