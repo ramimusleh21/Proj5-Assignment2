@@ -20,14 +20,15 @@ int main(void) {
 		return 1;
 	}
 
+	
+#ifdef PRE_RELEASE
+
 	ifstream emailFile(EMAIL_FILEPATH);
 	if (!emailFile.is_open()) {
 		cerr << "Could Not Open Email File" << endl;
 		return 1;
 	}
-	
-#ifdef PRE_RELEASE
-	
+
 	string name;
 	string email;
 	cout << "Running PRE - RELEASE source code.\n\n" << endl;
@@ -40,7 +41,7 @@ int main(void) {
 	cout << "Running Standard source code.\n\n" << endl;
 		
 	string name;
-	while (getline(nameFile, name) && getline(emailFile, email))
+	while (getline(nameFile, name))
 		{
 			STUDENT_DATA student(name);
 			StudentList.emplace_back(student);
