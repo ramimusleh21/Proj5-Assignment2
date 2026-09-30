@@ -54,7 +54,9 @@ int main(void) {
 	#endif
 
 	nameFile.close();
+#ifdef PRE_RELEASE
 	emailFile.close();
+#endif
 
 	return 1;
 }
