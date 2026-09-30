@@ -3,7 +3,7 @@
 #include <iostream>
 
 struct STUDENT_DATA {
-	STUDENT_DATA(std::string name) {
+	STUDENT_DATA(std::string name, std::string emailString) {
 		int firstnameLength = 0;
 		int lastnameLength = 0;
 
@@ -26,12 +26,23 @@ struct STUDENT_DATA {
 		for (int i = firstnameLength+1; i < name.length(); i++) {
 			if (name[i] != ' ') lastname += name[i];
 		}
+
+		int offset = firstname.size() + lastname.size() + 2;
+
+		for (int i = offset; i < emailString.size(); i++) 
+		{
+			if (emailString[i] != ',' && emailString[i] != ' ')
+			{
+				email += emailString[i];
+			}
+		}
 	}
 
 	void printName() {
-		std::cout << firstname << " " << lastname << std::endl;
+		std::cout << firstname << " " << lastname << " " << email << std::endl;
 	}
 
 	std::string firstname;
 	std::string lastname;
+	std::string email;
 };

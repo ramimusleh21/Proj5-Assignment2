@@ -6,9 +6,18 @@
 #include "student.h"
 #include "globals.h"
 
+#define PRE_RELEASE
+
 using namespace std;
 
 int main(void) {
+
+#ifdef PRE_RELEASE
+	cout << "Running PRE - RELEASE source code.\n\n" << endl;
+#else
+	cout << "Running Standard source code.\n\n" << endl;
+#endif
+
 	vector<STUDENT_DATA> StudentList;
 
 	ifstream nameFile(NAME_FILEPATH);
@@ -22,11 +31,12 @@ int main(void) {
 		cerr << "Could Not Open Email File" << endl;
 		return 1;
 	}
-	string line;
+	string name;
+	string email;
 
-	while (getline(nameFile, line))
+	while (getline(nameFile, name) && getline(emailFile, email))
 	{
-		STUDENT_DATA student(line);
+		STUDENT_DATA student(name, email);
 		StudentList.emplace_back(student);
 	}
 	 
