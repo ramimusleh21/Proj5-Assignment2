@@ -12,12 +12,6 @@ using namespace std;
 
 int main(void) {
 
-#ifdef PRE_RELEASE
-	cout << "Running PRE - RELEASE source code.\n\n" << endl;
-#else
-	cout << "Running Standard source code.\n\n" << endl;
-#endif
-
 	vector<STUDENT_DATA> StudentList;
 
 	ifstream nameFile(NAME_FILEPATH);
@@ -26,19 +20,33 @@ int main(void) {
 		return 1;
 	}
 
+	
+#ifdef PRE_RELEASE
+
 	ifstream emailFile(EMAIL_FILEPATH);
 	if (!emailFile.is_open()) {
 		cerr << "Could Not Open Email File" << endl;
 		return 1;
 	}
+
 	string name;
 	string email;
-
+	cout << "Running PRE - RELEASE source code.\n\n" << endl;
 	while (getline(nameFile, name) && getline(emailFile, email))
 	{
 		STUDENT_DATA student(name, email);
 		StudentList.emplace_back(student);
 	}
+#else
+	cout << "Running Standard source code.\n\n" << endl;
+		
+	string name;
+	while (getline(nameFile, name))
+		{
+			STUDENT_DATA student(name);
+			StudentList.emplace_back(student);
+		}
+#endif
 	 
 	#ifdef _DEBUG
 	cout << "NAMES LOADED:\n";
@@ -46,7 +54,9 @@ int main(void) {
 	#endif
 
 	nameFile.close();
+#ifdef PRE_RELEASE
 	emailFile.close();
+#endif
 
 	return 1;
 }
